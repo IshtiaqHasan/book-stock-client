@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import auth from '../../../firebase.init'
 import './Register.css'
 import SocialLogin from '../SocialLogin/SocialLogin';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { sendEmailVerification } from 'firebase/auth';
 
 const Register = () => {
     const [
@@ -11,7 +14,9 @@ const Register = () => {
         user,
         loading,
         error,
-    ] = useCreateUserWithEmailAndPassword(auth);
+    ] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
+
+
 
     const navigate = useNavigate();
 
@@ -28,6 +33,7 @@ const Register = () => {
         const password = event.target.password.value;
 
         createUserWithEmailAndPassword(email, password);
+        toast('Sent email');
     }
     return (
         <div className='register-form'>
@@ -40,6 +46,7 @@ const Register = () => {
             </form>
             <p>Already Have An Account? <Link to='/login' onClick={navigateLogin} className='text-danger text-decoration-none' > Please Login</Link></p>
             <SocialLogin></SocialLogin>
+            <ToastContainer />
         </div>
     );
 };

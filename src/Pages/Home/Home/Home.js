@@ -1,4 +1,5 @@
 import React from 'react';
+import AddItem from '../../AddItem/AddItem';
 import Footer from '../../Shared/Footer/Footer';
 import Banner from '../Banner/Banner';
 import Items from '../Items/Items';

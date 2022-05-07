@@ -1,9 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Items.css'
 
-
-const Item = ({ item }) => {
+const AllItem = ({ item }) => {
     const { _id, name, price, description, img, quantity, supplier, language, author, age, binding } = item;
     const navigate = useNavigate();
     const navigateToInventory = _id => {
@@ -19,12 +17,11 @@ const Item = ({ item }) => {
                     <h5>Price: ${price}</h5>
                     <h5>Available Quantity: {quantity}</h5>
                     <h5>Supplier: {supplier}</h5>
-                    {<button onClick={() => navigateToInventory(_id)} className="btn btn-primary update-bttn">Stock Update</button>}
+                    {<button onClick={() => navigateToInventory(_id)} className="btn btn-primary update-bttn">Manage Inventory</button>}
                 </div>
             </div>
-
         </div>
     );
 };
 
-export default Item;
+export default AllItem;
