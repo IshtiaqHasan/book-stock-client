@@ -20,8 +20,8 @@ const AddItem = () => {
             })
     };
     return (
-        <div className='w-50 mx-auto'>
-            <h2>Add Books</h2>
+        <div className='w-50 mx-auto mb-5'>
+            <h2 className='text-center text-primary'>Add Books</h2>
             <form className='d-flex flex-column' onSubmit={handleSubmit(onSubmit)}>
                 <input className='mb-2' placeholder='Book Name' {...register("name")} />
                 <input className='mb-2' placeholder='About Book' {...register("description")} />

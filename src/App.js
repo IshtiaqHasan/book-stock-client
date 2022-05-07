@@ -24,7 +24,11 @@ function App() {
       <Routes>
         <Route path="/" element={<Home></Home>}></Route>
         <Route path="/home" element={<Home></Home>}></Route>
-        <Route path='/item/:item_Id' element={<Inventory></Inventory>}></Route>
+        <Route path='/item/:item_Id' element={
+          <RequireAuth>
+            <Inventory></Inventory>
+          </RequireAuth>
+        }></Route>
         <Route path="/about" element={<About></About>}></Route>
         <Route path="/login" element={<Login></Login>}></Route>
         <Route path="/register" element={<Register></Register>}></Route>
@@ -33,11 +37,11 @@ function App() {
             <AllItems></AllItems>
           </RequireAuth>
         }></Route>
-        <Route path="/checkInventory" element={
+        {/* <Route path="/checkInventory" element={
           <RequireAuth>
             <CheckInventory></CheckInventory>
           </RequireAuth>
-        }></Route>
+        }></Route> */}
         <Route path="/addItem" element={
           <RequireAuth>
             <AddItem></AddItem>
