@@ -6,7 +6,6 @@ const Footer = () => {
         <div className='footer'>
             <p><small>Copyright 2022 © BookStock</small></p>
 
-
         </div>
     );
 };

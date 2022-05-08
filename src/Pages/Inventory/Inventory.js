@@ -61,7 +61,8 @@ const Inventory = () => {
 
 
     return (
-        <div className='container mt-5'>
+        <div className='container mt-2'>
+            <h1 className='text-center text-primary mb-3'>Manage Inventory</h1>
             <div className='d-flex'>
                 <img src={item.img} width="300" height="200" alt="" />
                 <div className="shadow-lg p-3 mb-5 bg-body rounded-3" >
