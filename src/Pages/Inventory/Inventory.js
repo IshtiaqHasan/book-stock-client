@@ -6,36 +6,88 @@ import AddItem from '../AddItem/AddItem';
 const Inventory = () => {
     const { item_Id } = useParams();
     const [item, setItem] = useState({});
-    const [quantity, setQuantity] = useState({})
-    let i = item.quantity;
-    function handleReduce() {
-        document.getElementById('qty').value = --i;
+    const [reload, setReload] = useState({});
 
-    }
     useEffect(() => {
         const url = `http://localhost:5000/item/${item_Id}`
         fetch(url)
             .then(res => res.json())
             .then(data => setItem(data))
-    }, [])
+    }, []);
+
+    const handleReduce = event => {
+        event.preventDefault();
+        let newQuantity = parseInt(--item.quantity);
+
+        // const new_quantity = quantity - 1;
+        // setItem(new_quantity)
+        let updateQuantity = { quantity: newQuantity };
+        setItem(updateQuantity)
+
+        //
+        const url = `http://localhost:5000/item/${item_Id}`
+        fetch(url, {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(updateQuantity)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+            })
+    }
+
+    const addQuantity = event => {
+        event.preventDefault();
+        let newQuantity = parseInt(++item.quantity);
+        let updateQuantity = { quantity: newQuantity };
+        setItem(updateQuantity);
+        const url = `http://localhost:5000/item/${item_Id}`
+        fetch(url, {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(updateQuantity)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+            })
+
+    }
+
 
     return (
         <div className='container mt-5'>
             <div className='d-flex'>
-                <div><img width="300" height="250" src={item.img} className="card-img-top course-image" alt="..." /></div>
+                <img src={item.img} width="300" height="300" alt="" />
                 <div className="shadow-lg p-3 mb-5 bg-body rounded-3" >
                     <div className="card-body">
-                        <h5 className="card-title">{item.name}</h5>
-                        <p className="card-text"><small>{item.description}</small></p>
-                        <h5>Price: ${item.price}</h5>
-                        <div className='d-flex'>
+                        <form >
+                            Name:<input className='ms-2 border-0' id='' type="text" value={item.name} name='itemName' />
+                            <br />
+                            Description:<input className='ms-2 border-0' maxLength="100" size="100" id='' value={item.description} name='itemDescription' />
+                            <br />
+                            Price: $<input className='ms-2 border-0' id='' value={item.price} name='itemDescription' />
+                            <br />
+                            Publisher:<input className='ms-2 border-0' id='' type="text" value={item.supplier} name='itemSupplier' />
                             <h5>Quantity:</h5>
-                            <input className='ms-2' id='qty' type="text" value={item.quantity} name='Quantity' /></div>
 
-                        <h5>Supplier: {item.supplier}</h5>
+                            <div className='d-flex'>
+                                <input className='ms-2 ' id='qty' type="text" value={item.quantity} name='itemQuantity' /> <button className='ms-2' onClick={handleReduce}>Delivered</button>
+                                <button className='ms-2' onClick={addQuantity} >Add Quantity</button>
+                            </div>
+
+
+                        </form>
+
+
 
                     </div>
-                    <button className='btn btn-primary' onClick={handleReduce}>Delivered</button>
+
                 </div>
             </div>
 
