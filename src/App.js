@@ -14,6 +14,7 @@ import CheckInventory from './Pages/CheckInventory/CheckInventory';
 import AddItem from './Pages/AddItem/AddItem';
 import AllItems from './Pages/AllItems/AllItems/AllItems';
 import ManageBooks from './Pages/ManageBooks/ManageBooks';
+import Blogs from './Pages/Blogs/Blogs';
 
 
 
@@ -32,6 +33,7 @@ function App() {
         <Route path="/about" element={<About></About>}></Route>
         <Route path="/login" element={<Login></Login>}></Route>
         <Route path="/register" element={<Register></Register>}></Route>
+        <Route path="/blogs" element={<Blogs></Blogs>}></Route>
         <Route path="/allItems" element={
           <RequireAuth>
             <AllItems></AllItems>

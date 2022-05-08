@@ -20,10 +20,10 @@ const ManageBooks = () => {
     }
     return (
         <div className='w-50 mx-auto'>
-            <h2>Manage Books</h2>
+            <h2 className='text-primary text-center mt-5 mb-5'>Manage Books</h2>
             {
                 items.map(item => <div key={item._id}>
-                    <h5>{item.name} <button onClick={() => handleDelete(item._id)}>X</button></h5>
+                    <h5>Book Name: {item.name}     <button onClick={() => handleDelete(item._id)}> X</button></h5>
 
                 </div>)
             }

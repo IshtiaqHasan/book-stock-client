@@ -18,10 +18,10 @@ const Inventory = () => {
     const handleReduce = event => {
         event.preventDefault();
         let newQuantity = parseInt(--item.quantity);
-
         // const new_quantity = quantity - 1;
         // setItem(new_quantity)
-        let updateQuantity = { quantity: newQuantity };
+        const updateQuantity = { quantity: newQuantity };
+
         setItem(updateQuantity)
 
         //
@@ -63,13 +63,11 @@ const Inventory = () => {
     return (
         <div className='container mt-5'>
             <div className='d-flex'>
-                <img src={item.img} width="300" height="300" alt="" />
+                <img src={item.img} width="300" height="200" alt="" />
                 <div className="shadow-lg p-3 mb-5 bg-body rounded-3" >
                     <div className="card-body">
                         <form >
                             Name:<input className='ms-2 border-0' id='' type="text" value={item.name} name='itemName' />
-                            <br />
-                            Description:<input className='ms-2 border-0' maxLength="100" size="100" id='' value={item.description} name='itemDescription' />
                             <br />
                             Price: $<input className='ms-2 border-0' id='' value={item.price} name='itemDescription' />
                             <br />
