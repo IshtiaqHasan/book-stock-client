@@ -9,7 +9,7 @@ const Inventory = () => {
     const [reload, setReload] = useState({});
 
     useEffect(() => {
-        const url = `http://localhost:5000/item/${item_Id}`
+        const url = `https://limitless-castle-30383.herokuapp.com/item/${item_Id}`
         fetch(url)
             .then(res => res.json())
             .then(data => setItem(data))
@@ -18,14 +18,11 @@ const Inventory = () => {
     const handleReduce = event => {
         event.preventDefault();
         let newQuantity = parseInt(--item.quantity);
-        // const new_quantity = quantity - 1;
-        // setItem(new_quantity)
         const updateQuantity = { quantity: newQuantity };
 
         setItem(updateQuantity)
 
-        //
-        const url = `http://localhost:5000/item/${item_Id}`
+        const url = `https://limitless-castle-30383.herokuapp.com/item/${item_Id}`
         fetch(url, {
             method: 'PUT',
             headers: {
@@ -44,7 +41,7 @@ const Inventory = () => {
         let newQuantity = parseInt(++item.quantity);
         let updateQuantity = { quantity: newQuantity };
         setItem(updateQuantity);
-        const url = `http://localhost:5000/item/${item_Id}`
+        const url = `https://limitless-castle-30383.herokuapp.com/item/${item_Id}`
         fetch(url, {
             method: 'PUT',
             headers: {
